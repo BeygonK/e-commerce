@@ -7,12 +7,14 @@ import { getProductsBySlug } from "@/lib/actions/products.actions";
 import { APP_NAME } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 
-export async function generateMetadata({
-  params,
-}: {
+type PageProps = {
   params: { slug: string };
-}) {
-  const product = await getProductsBySlug(params.slug);
+};
+
+export async function generateMetadata({ params }: PageProps) {
+  const { slug } = params;
+  console.log(slug);
+  const product = await getProductsBySlug(slug);
   if (!product) {
     return { title: "Product not found" };
   }
@@ -23,11 +25,12 @@ export async function generateMetadata({
 }
 
 const ProductDetails = async ({
-  params: { slug },
+  params,
 }: {
   params: { slug: string };
   searchParams: { page: string; color: string; size: string };
 }) => {
+  const { slug } = params;
   const product = await getProductsBySlug(slug);
   if (!product) notFound();
   return (

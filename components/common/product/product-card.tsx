@@ -4,7 +4,7 @@ import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Product } from "@/types/types";
 import ProductPrice from "./product-price";
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
     <Card className="w-full max-w-sm">
